@@ -43,6 +43,8 @@ end
 # when running `mix release`, the first release in the file
 # will be used by default
 
+use_conform? = System.get_env("USE_CONFORM") == "true"
+
 release :con_logs do
   set(version: current_version(:con_logs))
 
@@ -52,5 +54,5 @@ release :con_logs do
     ]
   )
 
-  plugin(Conform.ReleasePlugin)
+  if use_conform?, do: plugin(Conform.ReleasePlugin)
 end
